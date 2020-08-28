@@ -1,7 +1,9 @@
 package com.example.demo.utilities
 
 import com.example.demo.model.Account
+import com.example.demo.model.Types
 import java.sql.Timestamp
+import kotlin.math.log
 
 class AccountDao {
     fun addAccount(account: Account) {
@@ -32,6 +34,25 @@ class AccountDao {
         resultSet.close()
         connection.close()
         return accountList
+    }
+
+    fun readTypes(): List<Types> {
+        val connection = Database().connection
+        val resultTypes = connection
+                .createStatement()
+                .executeQuery("SELECT * FROM types WHERE date_deleted IS NULL")
+        val typesList = ArrayList<Types>()
+        while (resultTypes.next()){
+            val name = resultTypes.getString("name")
+            val rate = resultTypes.getInt("rate")
+            val trans = resultTypes.getInt("trans")
+            val fee = resultTypes.getInt("fee")
+           typesList += Types(name, rate, trans, fee)
+        }
+        resultTypes.close()
+        connection.close()
+        return typesList
+        print(typesList)
     }
 
     fun updateAccount(holder: String, account: Account) {

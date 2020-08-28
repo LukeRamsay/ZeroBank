@@ -33,7 +33,6 @@ class DepositFragment : Fragment("Deposit To An Account") {
                     comboboxObject.value = null; newBalanceString.value = 0
 
                     find<PopUpDialog>(mapOf("message" to "Deposit Completed!")).openModal(stageStyle = StageStyle.UTILITY)
-                    accountController.getAllAccounts()
                 }
             }
         }

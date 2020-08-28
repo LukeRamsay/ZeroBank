@@ -1,11 +1,14 @@
 package com.example.demo.controller
 
 import com.example.demo.model.Account
+import com.example.demo.model.Types
 import com.example.demo.utilities.AccountDao
 import tornadofx.*
 
 class AccountController : Controller() {
     val accounts = SortedFilteredList(items = getAllAccounts().observable())
+
+    val types = SortedFilteredList(items = getAllTypes().observable())
 
     fun postAccount(holder: String, id: String, balance: Int, type: String) {
         val account = Account(holder, id, balance, type)
@@ -15,6 +18,8 @@ class AccountController : Controller() {
     }
 
     fun getAllAccounts(): List<Account> = AccountDao().readAccount()
+
+    fun getAllTypes(): List<Types> = AccountDao().readTypes()
 
     fun putAccount(oldAccount: Account, newHolderSting: String, newIdSting: String, newBalanceSting: Int, newTypeSting: String) {
         val newAccount = Account(newHolderSting, newIdSting, newBalanceSting, newTypeSting)
