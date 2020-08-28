@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: javax.json:javax.json-api:1.1.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/json/javax.json-api/1.1.2/javax.json-api-1.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/json/javax.json-api/1.1.2/javax.json-api-1.1.2-javadoc.jar!/" />
+      <root url="file://$USER_HOME$/Desktop/openjfx-11.0.2_windows-x64_bin-sdk" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/json/javax.json-api/1.1.2/javax.json-api-1.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
