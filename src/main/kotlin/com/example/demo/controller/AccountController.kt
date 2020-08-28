@@ -32,10 +32,14 @@ class AccountController : Controller() {
         accounts.remove(account)
     }
 
-    fun depositAccount(account: Account) {
+    fun depositAccount(oldAccount: Account, newBalanceString: Int) {
+        val newAccount = Account(oldAccount.holder, oldAccount.id, oldAccount.balance.plus(newBalanceString), oldAccount.type)
         val dao = AccountDao()
-        dao.depositAccount(account.holder, account.balance)
-        getAllAccounts()
+        dao.depositAccount(oldAccount.holder, oldAccount.balance, newBalanceString)
+        with(accounts){
+            remove(oldAccount)
+            add(newAccount)
+        }
     }
 
     fun withdrawAccount(oldAccount: Account, newBalanceString: Int) {

@@ -29,7 +29,6 @@ class WithdrawFragment : Fragment("Withdraw From An Account") {
             }
             button("Withdrawal from Account") {
                 action {
-                    val newAccounts = comboboxObject.get()
                     accountController.withdrawAccount(comboboxObject.get(),
                             newBalanceString.value)
                     comboboxObject.value = null; newBalanceString.value = 0

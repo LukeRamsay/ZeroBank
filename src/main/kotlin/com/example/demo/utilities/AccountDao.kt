@@ -65,10 +65,10 @@ class AccountDao {
         connection.close()
     }
 
-    fun depositAccount(holder: String, balance : Int) {
+    fun depositAccount(holder: String, balance : Int, addAmount : Int) {
         val connection = Database().connection
         val preparedStatement = connection.prepareStatement("UPDATE Account SET balance = ? WHERE holder = ?")
-        preparedStatement.setString(1, balance.plus(50).toString())
+        preparedStatement.setString(1, balance.plus(addAmount).toString())
         preparedStatement.setString(2, holder)
         preparedStatement.executeUpdate()
         preparedStatement.close()
@@ -79,6 +79,17 @@ class AccountDao {
         val connection = Database().connection
         val preparedStatement = connection.prepareStatement("UPDATE Account SET balance = ? WHERE holder = ?")
         preparedStatement.setString(1, balance.minus(minusAmount).toString())
+        preparedStatement.setString(2, holder)
+        preparedStatement.executeUpdate()
+        preparedStatement.close()
+        connection.close()
+    }
+
+    fun intrestAccount(holder: String, balance : Int, intrestAmount : Int) {
+        val connection = Database().connection
+        val intrest = 0
+        val preparedStatement = connection.prepareStatement("UPDATE Account SET balance = ? WHERE holder = ?")
+        preparedStatement.setString(1, balance.plus(intrest).toString())
         preparedStatement.setString(2, holder)
         preparedStatement.executeUpdate()
         preparedStatement.close()
