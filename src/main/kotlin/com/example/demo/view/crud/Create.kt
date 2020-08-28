@@ -19,7 +19,6 @@ class CreateFragment : Fragment("Create A New Account") {
     private val holderString = SimpleStringProperty()
     private val idString = SimpleStringProperty()
     private val accountBalance = SimpleIntegerProperty()
-    private val accountType = SimpleStringProperty()
     private val accountController: AccountController by inject()
 
 
@@ -42,12 +41,9 @@ class CreateFragment : Fragment("Create A New Account") {
             }
             button("Add Account") {
                 action {
-                    runAsync {
                         accountController.postAccount(holderString.value, idString.value, accountBalance.value, comboboxObject.value.name)
-                    }.ui {
                         holderString.value = ""; idString.value = ""; accountBalance.value = 0
                         find<PopUpDialog>(params = mapOf("message" to "New Account Created!")).openModal(stageStyle = StageStyle.UTILITY)
-                    }
                 }
             }
         }
