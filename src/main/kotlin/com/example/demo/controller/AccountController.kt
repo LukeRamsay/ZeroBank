@@ -56,4 +56,15 @@ class AccountController : Controller() {
             add(newAccount)
         }
     }
+
+    fun intrestAccount(oldAccount: Account, newBalanceString: Int) {
+        val newAccount = Account(oldAccount.holder, oldAccount.id, oldAccount.balance.plus(newBalanceString.toInt()), oldAccount.type)
+        val dao = AccountDao()
+        //Issue with maths calculations
+        dao.intrestAccount(oldAccount.holder, oldAccount.balance, newBalanceString)
+        with(accounts){
+            remove(oldAccount)
+            add(newAccount)
+        }
+    }
 }

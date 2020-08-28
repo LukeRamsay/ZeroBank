@@ -11,7 +11,7 @@ class Header : View() {
         tab<CreateFragment>()
         tab("Update An Account")
         tab<DeleteFragment>()
-        tab("Search")
+        tab<IntrestFragment>()
         tab<WithdrawFragment>()
         tab<DepositFragment>()
     }

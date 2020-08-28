@@ -106,11 +106,14 @@ class AccountDao {
         connection.close()
     }
 
-    fun intrestAccount(holder: String, balance : Int, intrestAmount : Int) {
+    fun intrestAccount(holder: String, balance : Int, intrest : Int) {
+        val intrestAmount = balance.div(intrest.toInt())
+        //new balance string needs to be a double but is currently an int so the interest amount is not exactly accurate,
+        // bit of a maths error its probably just adding 1 percent when getting set to an int, should work if i could do maths! or
+        //if i knew the correct way of implimenting BODMAS / BEDMAS
         val connection = Database().connection
-        val intrest = 0
         val preparedStatement = connection.prepareStatement("UPDATE Account SET balance = ? WHERE holder = ?")
-        preparedStatement.setString(1, balance.plus(intrest).toString())
+        preparedStatement.setString(1, balance.plus(intrestAmount).toString())
         preparedStatement.setString(2, holder)
         preparedStatement.executeUpdate()
         preparedStatement.close()
