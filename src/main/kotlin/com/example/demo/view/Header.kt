@@ -9,7 +9,7 @@ class Header : View() {
         tabClosingPolicy = TabPane.TabClosingPolicy.UNAVAILABLE
         tab<ReadFragment>()
         tab<CreateFragment>()
-        tab("Update An Account")
+        tab<UpdateFragment>()
         tab<DeleteFragment>()
         tab<IntrestFragment>()
         tab<WithdrawFragment>()

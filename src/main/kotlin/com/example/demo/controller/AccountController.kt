@@ -21,11 +21,11 @@ class AccountController : Controller() {
 
     fun getAllTypes(): List<Types> = AccountDao().readTypes()
 
-    fun putAccount(oldAccount: Account, newHolderSting: String, newIdSting: String, newBalanceSting: Int, newTypeSting: String) {
-        val newAccount = Account(newHolderSting, newIdSting, newBalanceSting, newTypeSting)
+    fun updateAccount(oldAccount: Account, newTypeString: String) {
+        val newAccount = Account(oldAccount.holder, oldAccount.id, oldAccount.balance, newTypeString)
         val dao = AccountDao()
-        dao.updateAccount(oldAccount.holder, newAccount)
-        with(accounts) {
+        dao.updateAccount(oldAccount.holder, newTypeString)
+        with(accounts){
             remove(oldAccount)
             add(newAccount)
         }

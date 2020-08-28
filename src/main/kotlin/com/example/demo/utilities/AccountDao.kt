@@ -55,25 +55,35 @@ class AccountDao {
         print(typesList)
     }
 
-    fun updateAccount(holder: String, account: Account) {
+    fun updateAccount(holder: String, type: String) {
         val connection = Database().connection
-        var param = ""
-        val paramId = ", balance = ?"
-        var optionalParamIndex = 2
-        if (account.id.isNotEmpty()) param = paramId
-        val preparedStatement = connection.prepareStatement("UPDATE Account SET holder = ? $param WHERE holder = ?")
-        preparedStatement.setString(1, account.holder)
-        if (param.isNotEmpty()) {
-            preparedStatement.setString(optionalParamIndex, account.id)
-            optionalParamIndex = optionalParamIndex.inc()
-        }
-        preparedStatement.setString(optionalParamIndex, holder)
+        val preparedStatement = connection.prepareStatement("UPDATE Account SET type = ? WHERE holder = ?")
+        preparedStatement.setString(1, type)
+        preparedStatement.setString(2, holder)
         preparedStatement.executeUpdate()
         preparedStatement.close()
         connection.close()
+    }
+
+    //fun updateAccount(holder: String, account: Account) {
+    //    val connection = Database().connection
+    //    var param = ""
+    //    val paramId = ", balance = ?"
+    //    var optionalParamIndex = 2
+    //    if (account.id.isNotEmpty()) param = paramId
+//        preparedStatement.setString(1, account.holder)
+     //   if (param.isNotEmpty()) {
+     //       preparedStatement.setString(optionalParamIndex, account.id)
+     //       optionalParamIndex = optionalParamIndex.inc()
+    //    }
+    //    preparedStatement.setString(optionalParamIndex, holder)
+     //   preparedStatement.executeUpdate()
+     //   preparedStatement.close()
+     //   connection.close()
         //return account
         //Not yet properly working
-    }
+    //old update account
+
 
     fun deleteAccount(holder: String) {
         val timestamp = Timestamp(System.currentTimeMillis())
